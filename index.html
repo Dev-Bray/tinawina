@@ -1,34 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="./style/css/styles.css">
-        
-    </head> 
-    <body>
-        <div class="container">
-            <div >
-                <h1 class = "header_text">Do you wanna go out with me ehe</h1>
-            </div>
-            <div class="gif_container">
-                <img src="https://media.giphy.com/media/LnKonfpQ44fNvuGLkA/giphy.gif" alt="Cute animated illustration">
-            </div>
-            <div class = "buttons">
-                <button class="btn" id = "yesButton" onclick="nextPage()">Yes</button>
-                <button class="btn" id="noButton" onmouseover="moveButton()">No</button>
-                <script>
-                    function nextPage() {
-                        window.location.href = "yes.html";
-                    }
-                    
-                    function moveButton() {
-                        var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth);
-                        var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight);
-                        document.getElementById('noButton').style.left = `${x}px`;
-                        document.getElementById('noButton').style.top = `${y}px`;
-                    }
-                </script> 
-            </div>
+<head>
+    <link rel="stylesheet" href="./style/css/styles.css">
+    <style>
+        .cat-img {
+            width: 200px; /* Set a fixed width */
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1 id="valentineText" class="header_text">Will you be my valentine?</h1>
         </div>
-       
-    </body> 
+        <div class="gif_container">
+            <img id="catGif" src="https://media.giphy.com/media/LnKonfpQ44fNvuGLkA/giphy.gif" alt="Cute animated illustration" class="cat-img">
+        </div>
+        <div class="buttons">
+            <button class="btn btn--yes" id="yesButton" onclick="nextPage()">Yes</button>
+            <button class="btn btn--no" id="noButton" onclick="handleNoClick()">No</button>
+            <div id="noMessageContainer">
+                <div id="noMessage"></div> <!-- Container for displaying random messages -->
+            </div>
+            <script>
+                "use strict";
+
+                const MAX_NO_CLICKS = 10;
+                let noClicks = 0;
+                const baseImagePath = "C:/Users/bongw/tinawina/style/images/";
+                const numberOfImages = 10;
+                let currentImageIndex = 0;
+
+                const messages = [
+                    "Lol be serious",
+                    "Tatie please",
+                    "Just think about it",
+                    "Don't do this to me :(",
+                    "We dont do that here",
+                    "You arent a nice person",
+                    "Baby stop playing",
+                    "I'm melting",
+                    "You want me to be all alone!",
+                    "Please say yes!"
+                ];
+                let lastMessageIndex = -1; // Initialize with -1 to start from the first message
+
+                function handleNoClick() {
+                    if (noClicks < MAX_NO_CLICKS) {
+                        noClicks++;
+                        displayNextMessage();
+                    } else {
+                        document.getElementById('noButton').addEventListener('mouseover', moveButton);
+                    }
+                }
+
+                function displayNextMessage() {
+                    lastMessageIndex = (lastMessageIndex + 1) % messages.length; // Increment and loop back to the beginning if necessary
+                    const message = messages[lastMessageIndex];
+                    document.getElementById('valentineText').textContent = message; // Replace text content with next message
+                    
+                    // Select the next image in the sequence
+                    currentImageIndex = (currentImageIndex % numberOfImages) + 1;
+                    const imageUrl = baseImagePath + currentImageIndex + ".webp";
+                    document.getElementById('catGif').src = imageUrl; // Update src attribute of the img tag
+                }
+
+                function nextPage() {
+                    window.location.href = "yes.html";
+                }
+
+                function moveButton() {
+                    var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth);
+                    var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight);
+                    document.getElementById('noButton').style.left = `${x}px`;
+                    document.getElementById('noButton').style.top = `${y}px`;
+                }
+            </script>
+        </div>
+    </div>
+</body>
 </html>

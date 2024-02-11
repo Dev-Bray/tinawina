@@ -73,3 +73,8 @@ body {
     justify-content: center;
     align-items: center;
 }
+/* Add CSS to resize the image */
+#yesImage {
+    width: 200px; /* Set the width to 200 pixels */
+    height: auto; /* Automatically scale the height while maintaining aspect ratio */
+}

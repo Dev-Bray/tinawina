@@ -35,7 +35,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 75px;
     margin-left: 20px;
     /* optional: adds some space between the buttons */
 }
@@ -64,3 +64,18 @@ body {
     align-items: center;
     margin-left: 90px;
 }
+#noMessageContainer {
+    position: absolute;
+    top: calc(100% + 20px); /* Position the container below the buttons */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white; /* Background color of the message container */
+    padding: 10px; /* Adjust as needed */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#noMessage {
+    margin-top: 10px; /* Adjust as needed */
+}
+
